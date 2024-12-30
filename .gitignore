@@ -1,18 +1,102 @@
-# This .gitignore is appropriate for repositories deployed to GitHub Pages and using
-# a Gemfile as specified at https://github.com/github/pages-gem#conventional
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convite Especial</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fef6f6;
+            text-align: center;
+            padding: 50px;
+            background-image: url('https://www.w3schools.com/w3images/rose.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        h1 {
+            font-size: 3em;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.5em;
+            color: #fff;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #ff66b2;
+        }
+        .button {
+            display: inline-block;
+            background-color: #ff66b2;
+            color: white;
+            padding: 10px 30px;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-radius: 30px;
+            margin-top: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        .button:hover {
+            background-color: #ff3385;
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <h1>Convite Especial para Evelin</h1>
+    <p>Preencha os detalhes do encontro:</p>
 
-# Basic Jekyll gitignores (synchronize to Jekyll.gitignore)
-_site/
-.sass-cache/
-.jekyll-cache/
-.jekyll-metadata
+    <form id="form">
+        <p>Escolha o local para o encontro:</p>
+        <select id="lugar" required>
+            <option value="Bate Volta">Bate Volta</option>
+            <option value="Restaurante">Restaurante</option>
+            <option value="Top Burguer assistindo Avenida Brasil">Top Burguer assistindo Avenida Brasil</option>
+        </select>
 
-# Additional Ruby/bundler ignore for when you run: bundle install
-/vendor
+        <p>Escolha a data do encontro:</p>
+        <input type="date" id="data" min="2025-01-01" max="2025-12-31" required>
 
-# Specific ignore for GitHub Pages
-# GitHub Pages will always use its own deployed version of pages-gem 
-# This means GitHub Pages will NOT use your Gemfile.lock and therefore it is
-# counterproductive to check this file into the repository.
-# Details at https://github.com/github/pages-gem/issues/768
-Gemfile.lock
+        <p>Escolha a hora do encontro (Horário de Brasília):</p>
+        <input type="time" id="hora" required>
+
+        <br><br>
+        <button type="submit" class="button">Gerar Convite</button>
+    </form>
+
+    <p id="url-container"></p>
+
+    <script>
+        document.getElementById('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var nome = "Evelin da Silva Oliveira";
+            var lugar = document.getElementById('lugar').value;
+            var data = document.getElementById('data').value;
+            var hora = document.getElementById('hora').value;
+
+            if (data && hora) {
+                var dataHora = `${data} ${hora}`;
+                var url = `https://www.exemplo.com/convite?nome=${encodeURIComponent(nome)}&lugar=${encodeURIComponent(lugar)}&data_hora=${encodeURIComponent(dataHora)}`;
+                document.getElementById('url-container').innerHTML = `
+                    <p><strong>Convite Gerado:</strong></p>
+                    <p><a href="${url}" target="_blank" class="button">Clique aqui para acessar o convite</a></p>
+                    <p>Ou copie o link abaixo:</p>
+                    <input type="text" value="${url}" readonly>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
