@@ -1,0 +1,13 @@
+# Ignore o diretório onde o Jekyll gera os arquivos estáticos
+_site/
+
+# Ignore cache do Jekyll e outros arquivos temporários
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Ignore dependências de Ruby quando usando o Bundler
+/vendor
+
+# Ignore o Gemfile.lock, já que o GitHub Pages usa sua própria versão do Pages gem
+Gemfile.lock
